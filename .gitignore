@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Entornos locales (el kit jamás debe llevar secretos al repo)
+.env
+.env.*
+
+# Sistema operativo
+Thumbs.db
+.DS_Store

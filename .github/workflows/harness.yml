@@ -1,0 +1,71 @@
+# Generado por bootstrap.py (kit FIA Harness v2). Este workflow convierte las
+# Reglas de Oro del kit en checks de merge: si un agente "cierra" una fase sin
+# su TASK ni su checkpoint, el push/PR se bloquea.
+
+name: Harness — reglas de oro
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  estado:
+    name: Estado del harness válido (reglas 4, 5 y 7)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validar estado, cierre de fases y aprobaciones
+        run: python task_generator.py --check
+
+  secretos:
+    name: Sin secretos en el repositorio (regla 8)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  calidad:
+    name: Tests y auditoría de dependencias (regla 7)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        if: ${{ hashFiles('package.json') != '' }}
+        with:
+          node-version: "20"
+      - name: Instalar dependencias Node
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm ci || npm install
+      - name: Tests Node
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm test --if-present
+      - name: Auditoría Node (falla en nivel high o superior)
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm audit --audit-level=high
+      - uses: actions/setup-python@v5
+        if: ${{ hashFiles('requirements.txt') != '' || hashFiles('pyproject.toml') != '' }}
+        with:
+          python-version: "3.11"
+      - name: Instalar dependencias Python
+        if: ${{ hashFiles('requirements.txt') != '' }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Tests Python
+        if: ${{ hashFiles('tests/**/test_*.py') != '' }}
+        run: |
+          python -m pytest --version >/dev/null 2>&1 && pytest -q || python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Auditoría Python (falla en vulnerabilidades conocidas)
+        if: ${{ hashFiles('requirements.txt') != '' }}
+        run: |
+          pip install pip-audit
+          pip-audit -r requirements.txt

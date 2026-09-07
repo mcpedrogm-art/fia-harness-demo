@@ -1,0 +1,102 @@
+{
+  "schema": "harness-state/1",
+  "process_phases": [
+    {
+      "id": "M0",
+      "title": "",
+      "objective": "Bootstrap del harness y lectura del PRD/MVP (Fase 0) / Plantillas activas, carpetas creadas y CONTEXT.md con el resumen del PRD",
+      "depends_on": [],
+      "depends_on_notes": "—",
+      "status": "done"
+    },
+    {
+      "id": "M1",
+      "title": "",
+      "objective": "Entrevista de Descubrimiento Técnico (Fase 1) / SECURITY.md y AEOGEOSEO.md completados; decisiones registradas en CONTEXT.md",
+      "depends_on": [
+        "M0"
+      ],
+      "depends_on_notes": "",
+      "status": "done"
+    },
+    {
+      "id": "M2",
+      "title": "",
+      "objective": "Especificación Técnica (Fase 2) / SPEC.md redactado y aprobado explícitamente por el humano",
+      "depends_on": [
+        "M1"
+      ],
+      "depends_on_notes": "",
+      "status": "done"
+    },
+    {
+      "id": "M3",
+      "title": "",
+      "objective": "Plan de Fases de Ejecución (Fase 3) / Tabla de fases F0-Fn añadida más abajo, derivada de SPEC.md",
+      "depends_on": [
+        "M2"
+      ],
+      "depends_on_notes": "",
+      "status": "done"
+    }
+  ],
+  "execution_phases": [
+    {
+      "id": "F0",
+      "title": "",
+      "objective": "Bootstrap del repo, CI inicial y comando que responde / Repo con harness.yml en verde y src/ + tests/",
+      "depends_on": [
+        "M3"
+      ],
+      "depends_on_notes": "",
+      "status": "done"
+    },
+    {
+      "id": "F1",
+      "title": "",
+      "objective": "Comando greet con test real / python -m demoapp greet imprime saludo + hora; suite pasa",
+      "depends_on": [
+        "F0"
+      ],
+      "depends_on_notes": "",
+      "status": "done"
+    },
+    {
+      "id": "F2",
+      "title": "",
+      "objective": "Persistencia local de notas (note save / note list) / Fichero notes.json con validación de entrada",
+      "depends_on": [
+        "F1"
+      ],
+      "depends_on_notes": "",
+      "status": "pending"
+    }
+  ],
+  "checkpoints": [
+    {
+      "phase": "M0",
+      "summary": "Bootstrap del harness ejecutado; plantillas y carpetas creadas; CONTEXT.md generado."
+    },
+    {
+      "phase": "M1",
+      "summary": "Entrevista resuelta por chat: stack Python puro, sin BBDD, sin superficie pública."
+    },
+    {
+      "phase": "M2",
+      "summary": "SPEC.md aprobada por el responsable el 2026-09-07."
+    },
+    {
+      "phase": "M3",
+      "summary": "Plan F0-Fn pegado en esta tabla; primera fase de ejecución F0."
+    },
+    {
+      "phase": "F0",
+      "summary": "CI `harness.yml` en verde; prueba de humo ejecutada (`python -m demo_app greet`)."
+    },
+    {
+      "phase": "F1",
+      "summary": "Test real añadido y pasado (`python -m unittest discover tests -v` → 2 OK); salida de `greet` verificada."
+    }
+  ],
+  "updated": "2026-09-07"
+}
