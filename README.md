@@ -119,6 +119,37 @@ Each record is bound to hashed artifacts (`evidence/EV-*.stdout.txt`,
 artifact and `PROVENANCE` turns red. In CI, the platform's artifact digest anchors
 the evidence as `trusted` (`fia evidence --ingest <manifest>`).
 
+### Tampered evidence: caught too
+
+The second cheat is subtler than closing a phase: **edit the evidence** after the
+fact. Append one line to a record's artifact and verify again:
+
+```bash
+echo " (edited by hand)" >> evidence/EV-001.stderr.txt
+fia verify
+echo $?                                   # 1 → the merge is blocked
+```
+
+```text
+STATE          PASS
+DEPENDENCIES   PASS
+EVIDENCE       PASS
+PROVENANCE     FAIL — 1 con procedencia (0 trusted) · 0 solo existencia
+SEALS          PASS
+SPEC SNAPSHOT  PASS
+
+RESULT
+  FAIL — merge blocked
+
+Reasons:
+  [PROVENANCE] F0: EV-001: artifact 'EV-001.stderr.txt' no coincide con su hash (manipulado, corrupto o normalizado por git; los artifacts deben viajar como binarios: evidence/.gitattributes)
+```
+
+Restore it with `git checkout -- evidence/`. Note the honest boundary: FIA
+recomputes hashes and checks the CI digest — it makes *editing* evidence
+detectable, not fabrication on a machine you fully control (see the kit's
+Limitations table).
+
 ## The demo app really works
 
 This is not a toy about nothing: the closed phases (`F0`, `F1`) have real,
