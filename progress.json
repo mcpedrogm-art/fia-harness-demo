@@ -1,5 +1,5 @@
 {
-  "schema": "harness-state/1",
+  "schema_version": "3.0",
   "process_phases": [
     {
       "id": "M0",
@@ -75,28 +75,54 @@
   "checkpoints": [
     {
       "phase": "M0",
-      "summary": "Bootstrap del harness ejecutado; plantillas y carpetas creadas; CONTEXT.md generado."
+      "summary": "Bootstrap del harness ejecutado; plantillas y carpetas creadas; CONTEXT.md generado.",
+      "evidence": "",
+      "evidence_file": null,
+      "id": "CP-M0",
+      "recorded_at": "2026-09-15T18:17:37"
     },
     {
       "phase": "M1",
-      "summary": "Entrevista resuelta por chat: stack Python puro, sin BBDD, sin superficie pública."
+      "summary": "Entrevista resuelta por chat: stack Python puro, sin BBDD, sin superficie pública.",
+      "evidence": "",
+      "evidence_file": null,
+      "id": "CP-M1",
+      "recorded_at": "2026-09-15T18:17:37"
     },
     {
       "phase": "M2",
-      "summary": "SPEC.md aprobada por el responsable el 2026-09-07."
+      "summary": "SPEC.md aprobada por el responsable el 2026-09-07.",
+      "evidence": "",
+      "evidence_file": null,
+      "id": "CP-M2",
+      "recorded_at": "2026-09-15T18:17:37"
     },
     {
       "phase": "M3",
-      "summary": "Plan F0-Fn pegado en esta tabla; primera fase de ejecución F0."
+      "summary": "Plan F0-Fn pegado en esta tabla; primera fase de ejecución F0.",
+      "evidence": "",
+      "evidence_file": null,
+      "id": "CP-M3",
+      "recorded_at": "2026-09-15T18:17:37"
     },
     {
       "phase": "F0",
-      "summary": "CI `harness.yml` en verde; prueba de humo ejecutada (`python -m demo_app greet`)."
+      "summary": "CI `harness.yml` en verde; prueba de humo re-ejecutada en la migración a v3 (`python src/demo_app.py greet --name Ada`).",
+      "evidence": "",
+      "evidence_file": "EV-001",
+      "id": "CP-F0",
+      "recorded_at": "2026-09-15T18:17:37"
     },
     {
       "phase": "F1",
-      "summary": "Test real añadido y pasado (`python -m unittest discover tests -v` → 2 OK); salida de `greet` verificada."
+      "summary": "Test real añadido y pasado (`python -m unittest discover tests -v` → 2 OK); salida de `greet` verificada.",
+      "evidence": "",
+      "evidence_file": "EV-002",
+      "id": "CP-F1",
+      "recorded_at": "2026-09-15T18:17:37"
     }
   ],
-  "updated": "2026-09-07"
+  "updated": "2026-09-15",
+  "compiled_at": "2026-09-15T18:17:37",
+  "state_sha256": "c218464e910d003b940ce2d5fcc3ef56cbf6211085036511a8ed747c468ca242"
 }

@@ -1,0 +1,7 @@
+test_greet_incluye_nombre (test_demo_app.GreetTest.test_greet_incluye_nombre) ... ok
+test_greet_rechaza_nombre_vacio (test_demo_app.GreetTest.test_greet_rechaza_nombre_vacio) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK

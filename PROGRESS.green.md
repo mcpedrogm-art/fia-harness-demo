@@ -25,5 +25,7 @@
 - **M1:** Entrevista resuelta por chat: stack Python puro, sin BBDD, sin superficie pública.
 - **M2:** SPEC.md aprobada por el responsable el 2026-09-07.
 - **M3:** Plan F0-Fn pegado en esta tabla; primera fase de ejecución F0.
-- **F0:** CI `harness.yml` en verde; prueba de humo ejecutada (`python -m demo_app greet`).
+- **F0:** CI `harness.yml` en verde; prueba de humo re-ejecutada en la migración a v3 (`python src/demo_app.py greet --name Ada`).
+    Evidencia: EV-001
 - **F1:** Test real añadido y pasado (`python -m unittest discover tests -v` → 2 OK); salida de `greet` verificada.
+    Evidencia: EV-002

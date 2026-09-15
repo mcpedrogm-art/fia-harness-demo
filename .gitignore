@@ -11,3 +11,6 @@ venv/
 # Sistema operativo
 Thumbs.db
 .DS_Store
+
+# Backup local de migración de schema del estado (ADR-002 del demo)
+progress.json.bak

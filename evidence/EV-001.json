@@ -1,0 +1,33 @@
+{
+  "id": "EV-001",
+  "type": "test",
+  "source": "local-run",
+  "command": [
+    "python",
+    "src/demo_app.py",
+    "greet",
+    "--name",
+    "Ada"
+  ],
+  "cwd": "C:\\Users\\Usuario\\Documents\\MIS SKILLS Y MCP\\INICIO DE PROYECTO\\fia-harness-demo",
+  "exit_code": 0,
+  "started_at": "2026-09-15T16:17:26.334763+00:00",
+  "finished_at": "2026-09-15T16:17:26.353734+00:00",
+  "duration_s": 0.021,
+  "stdout_sha256": "ceeef3f02fa61c883955c392fbbab04a3797ae9f28ea05839ecc67d27ccb6d16",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [
+    {
+      "name": "EV-001.stdout.txt",
+      "sha256": "ceeef3f02fa61c883955c392fbbab04a3797ae9f28ea05839ecc67d27ccb6d16"
+    },
+    {
+      "name": "EV-001.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "environment": {
+    "python": "3.11.15",
+    "os": "Windows-10-10.0.26200-SP0"
+  }
+}
