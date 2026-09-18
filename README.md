@@ -150,6 +150,23 @@ recomputes hashes and checks the CI digest — it makes *editing* evidence
 detectable, not fabrication on a machine you fully control (see the kit's
 Limitations table).
 
+## Receipts: closure binding (v3.3)
+
+Since v3.3 a phase can be bound to the exact content it closed with: a **receipt**
+(`evidence/receipts/receipt-F<N>.json`) hashes the phase's product files and its
+checks, and anchors them to a commit. The CI gate is now
+`fia verify --strict-receipts`: a receipt that no longer matches the tree blocks
+the merge. `fia receipt verify F<N>` recomputes and checks one receipt (always
+strict).
+
+This demo's phases (`F0`, `F1`) were closed before the rule existed, so they are
+**grandfathered** (ADR-009) and carry no receipt. The live example runs in the kit
+repository itself: phases `F9` and `F10` have committed receipts
+(`governance/evidence/receipts/`) verified on every push.
+
+Honest limit: a receipt binds *content*, not truth — it proves which files and
+checks existed at closure, not that the declared results happened.
+
 ## The demo app really works
 
 This is not a toy about nothing: the closed phases (`F0`, `F1`) have real,
